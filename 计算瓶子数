@@ -1,0 +1,12 @@
+int main()
+{
+	int money = 20;
+	int embottle = 0;
+	int bottle = 0;
+
+	scanf_s("%d", &money);
+	embottle = money / 2;
+    bottle = money + embottle;
+	printf("%d", bottle);
+	return 0;
+}
