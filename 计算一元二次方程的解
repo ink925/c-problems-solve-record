@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <math.h>
+int main() {
+float a = 0.0;
+float b = 0.0;
+float c = 0.0;
+float x1 = 0.0;
+float x2 = 0.0;
+float delta = 0.0;
+while(scanf("%f %f %f",&a,&b,&c)!=EOF)
+{
+    if(a==0)
+printf("Not quadratic equation");
+else
+ {
+    delta = b*b-4*a*c;
+    if(delta==0)
+    {
+        x1 = ((-1.0)*b)/2.0/a;
+        x2 = x1;
+        if(x1==0)
+        printf("x1=x2=0.00\n");
+        else
+        printf("x1=x2=%.2f\n",x1);
+    }
+    if(delta>0)
+    {
+        x1 = ((-1.0)*b-sqrt(delta))/(2.0*a);
+        x2 = ((-1.0)*b+sqrt(delta))/(2.0*a);
+        printf("x1=%.2f;x2=%.2f\n",x1,x2);
+    }
+    if(delta<0)
+    {
+        x1 = -b/(2.0*a)-sqrt(-delta)/(2.0*a);
+        x2 = -b/(2.0*b)+sqrt(-delta)/(2.0*a);
+        printf("x1=%.2f-%.2fi;x2=%.2f+%.2fi\n",-b/(2.0*a),sqrt(-delta)/(2.0*a),-b/(2.0*a),sqrt(-delta)/(2.0*a));
+    }
+ };
+}
+    return 0;
+}
