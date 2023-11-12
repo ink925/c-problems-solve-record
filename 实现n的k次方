@@ -1,0 +1,18 @@
+#include <stdio.h>
+int func(int n, int k)
+{
+	if (k==1)
+		return n;
+	else
+		return n*func(n,k-1);
+}
+int main()
+{
+	//实现n的k次方
+	int n = 0;
+	int k = 0;
+	scanf_s("%d %d", &n, &k);
+	int ret = func(n, k);
+	printf("%d", ret);
+	return 0;
+}
