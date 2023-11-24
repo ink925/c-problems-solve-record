@@ -1,0 +1,85 @@
+#include <stdio.h>
+int main()
+{
+	int i = 0;
+	int count = 0;
+	int j = 0;
+	int row = 0;
+	int col = 0;
+	scanf("%d %d",&row,&col);
+	int arr[30][30]={0};
+	int arr1[30][30]={0};
+	for(i=0;i<row;i++)
+	{
+		for(j=0;j<col;j++)
+		{
+			scanf("%d",&arr[i][j]);
+			arr1[i][j]=arr[i][j];
+		}
+	}
+	int cnt = 0;
+	int cnt1 = 0;
+	int store = 0;
+	for(i=0;i<row;i++)
+	{
+		cnt=0;
+		for(j=0;j<col-1;j++)
+		{
+			store = j;
+			int store1 = j;
+			cnt = 0;
+			while(arr[i][store]==arr[i][store+1])
+			{
+				store++;
+				cnt++;
+				if(arr[i][store]!=arr[i][store+1]&&cnt>1)
+				{
+					for(j = store1;j<=store1+cnt;j++)
+					{
+						arr1[i][j]=0;
+					}
+					j = store1;
+				}
+				
+			}
+			
+		}
+		
+	}	
+    
+    for(j=0;j<row;j++)
+	{
+		cnt=0;
+		for(i=0;i<row-1;i++)
+		{
+			store = i;
+			int store1 = i;
+			cnt = 0;
+			while(arr[store][j]==arr[store+1][j])
+			{
+				store++;
+				cnt++;
+				if(arr[store][j]!=arr[store+1][j]&&cnt>1)
+				{
+					for(i = store1;i<=store1+cnt;i++)
+					{
+						arr1[i][j]=0;
+					}
+				}
+				
+			}
+			
+		}
+		
+	}	
+	//打印 数组 
+	for(i=0;i<row;i++)
+	{
+		for(j=0;j<col;j++)
+		{
+			printf("%d ",arr1[i][j]); 
+		}
+		printf("\n");
+	} 
+	return 0;
+}
