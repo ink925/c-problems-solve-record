@@ -1,0 +1,116 @@
+#include <stdio.h>
+int main()
+{
+	int i = 0;
+	int j = 0;
+	int n = 0;
+	int m = 0;
+	int arr[100][100]={0};
+	scanf("%d %d",&m,&n);
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+			scanf("%d",&arr[i][j]);
+		}
+	}
+	int min[100] = {0};
+	int row_min[100] = {0};
+	int col_min[100] = {0};
+	int max[100] = {0};
+	int row_max[100]={0};
+	int col_max[100]={0};
+	for(i=0;i<m;i++)//找到每行最小值 
+	{
+		min[i] = arr[i][0];
+		for(j=0;j<n;j++)
+		{
+			if(arr[i][j]<min[i])
+			{
+				min[i] = arr[i][j];
+				row_min[i] = i;
+				col_min[i] = j;
+			}
+			
+		}
+	}
+	for(j=0;j<n;j++)
+	{
+		max[j] = arr[0][j];
+		for(i=0;i<m;i++)
+		{
+			if(arr[i][j]>max[j])
+			{
+				max[j] = arr[i][j];
+				row_max[j] = i;
+				col_max[j] = j;
+			}
+		}
+	}
+	//冒泡排序了
+	int temp = 0;
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<m-i-1;j++)
+		{
+			if(max[j]<max[j+1])
+			{
+				temp=max[j];
+				max[j]=max[j+1];
+				max[j+1]=temp;
+				temp=row_max[j];
+				row_max[j]=row_max[j+1];
+				row_max[j+1]=temp;
+				temp = col_max[j];
+				col_max[j]=col_max[j+1];
+				col_max[j+1]=temp;
+			}
+		}
+	 } 
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<m-i-1;j++)
+		{
+			if(min[j]>min[j+1])
+			{
+				temp=min[j];
+				min[j]=min[j+1];
+				min[j+1]=temp;
+				temp=row_min[j];
+				row_min[j]=row_min[j+1];
+				row_min[j+1]=temp;
+				temp = col_min[j];
+				col_min[j]=col_min[j+1];
+				col_min[j+1]=temp;
+			}
+		}
+	} 
+	int flag = 0;
+	int store = 0;
+	//for(i=0;i<n;i++)
+	//{
+		//printf("%d %d  ",row_max[i],col_max[i]);
+	//}
+	//printf("\n");
+	//for(i=0;i<m;i++)
+	//{
+		//printf("%d %d  ",row_min[i],col_min[i]);
+	//}
+	//printf("\n");
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<n;j++)
+		{
+		if(min[i]==max[j])
+			{
+				flag = 1;
+				store = j;
+	    	}
+		}
+	}
+	if(flag==1)
+	printf("%d %d %d\n",row_max[store],col_max[store],max[store]);
+	else
+	printf("no\n");
+	return 0;
+}
