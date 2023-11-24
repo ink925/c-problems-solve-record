@@ -1,0 +1,58 @@
+#include <stdio.h>
+int main()
+{
+	int m = 0;
+	scanf("%d",&m);
+	int i = 0;
+	int j = 0;
+	int temp = 0;
+	int arr[20][20]={0};
+	int sum[42]={0};
+	for(i=0;i<m;i++)//加每行的和 
+	{
+		for(j=0;j<m;j++)
+		{
+			scanf("%d",&arr[i][j]);
+			sum[i]+=arr[i][j];
+		}
+	}
+	for(j=0;j<m;j++)
+	{
+		for(i=0;i<m;i++)
+		{
+			sum[m+j]+=arr[i][j];
+		}
+	}
+	for(i=0;i<m;i++)
+	{
+		for(j=i;j<=i;j++)
+		{
+			sum[2*m]+=arr[i][j];
+		}
+	}
+	for(i=0;i<m;i++)
+	{
+		for(j=m-i-1;j<=m-i-1;j++)
+		{
+			sum[2*m+1]+=arr[i][j];
+		}
+	}
+
+	for(i=0;i<2*m+1;i++)
+	{	
+	for(j=0;j<2*m+1-i;j++)
+	{
+		if(sum[j]<sum[j+1])
+		{
+			temp =sum[j];
+			sum[j]=sum[j+1];
+			sum[j+1]=temp; 
+		}
+	}	
+	}
+	for(i=0;i<2*m+2;i++)
+	{
+		printf("%d ",sum[i]);
+	}
+	return 0;
+}
