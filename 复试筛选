@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+struct clt//初始化一个结构体，里面有总成绩，学号，以及英语成绩 
+{
+	char testnum[20];//学号 
+	int fullgrade;//总成绩 
+	int british;//英语成绩 
+}s[200];
+int main()
+{
+	int m=0,n=0,i=0,j=0;
+	scanf("%d %d",&m,&n);
+	getchar();
+	for(i=0;i<m;i++)//读入数据 
+	{
+		scanf("XD%s %d %d",s[i].testnum,&s[i].fullgrade,&s[i].british);
+		getchar();//吸收回车 
+	}
+	for(i=0;i<m-1;i++)
+	{
+		for(j=0;j<m-i-1;j++)
+		{
+			if(s[j].fullgrade<s[j+1].fullgrade)//对成绩进行冒泡排序，然后交换整个结构体 
+			{
+				struct clt c = s[j];
+				s[j]=s[j+1];
+				s[j+1]=c;
+			}
+			else if(s[j].fullgrade==s[j+1].fullgrade)
+			{
+				if(s[j].british<s[j+1].british)//相等就比较英语成绩 ，如果小于就交换 
+				{
+				struct clt c = s[j];
+				s[j]=s[j+1];
+				s[j+1]=c;
+				}
+			}
+			
+		}
+	}
+
+	for(j=0;j<n;j++)
+	{
+	if(s[j].british==s[j+1].british)//英语也等就比较学号 
+		{
+		if(strcmp(s[j].testnum,s[j+1].testnum)>0)//学号大了就交换结构体 
+			{
+				struct clt t = s[j];
+				s[j]=s[j+1];
+				s[j+1]=t;
+			}
+		}
+	}
+	
+	for(i=0;i<n;i++)//打印最后结果 
+	{
+		printf("XD%s %d %d\n",s[i].testnum,s[i].fullgrade,s[i].british);
+	}
+	return 0;
+}
