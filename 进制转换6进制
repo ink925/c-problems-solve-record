@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <math.h>
+void find(int n)
+{
+    if(n>5)
+    {
+        find(n/6);
+    }
+    printf("%d",n%6);
+}
+int main() {
+int n = 0;
+scanf("%d",&n);
+find(n);
+    return 0;
+}
